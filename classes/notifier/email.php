@@ -22,9 +22,12 @@ class Post_Runner_Email implements Notifier
 
 		$this->_emails = $emails;
 
-		include_once Kohana::find_file(
-			'vendor', 'swiftmailer/lib/swift_required'
-		);
+		if ( ! class_exists('Swift_Message'))
+		{
+			require Kohana::find_file(
+				'vendor', 'swiftmailer/lib/swift_required'
+			);
+		}
 	}
 
 	/**
